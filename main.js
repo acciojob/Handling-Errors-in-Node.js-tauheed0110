@@ -1,22 +1,38 @@
 const fs = require('fs');
+const path = require('path');
 
-function printFileContents(filePath) {
-  // TODO: Use fs.readFile to read the file contents
+// Function to read and print file contents
+function readFile(filePath) {
+  const absolutePath = path.resolve(filePath);
 
-  fs.readFile(filePath, 'utf-8', (err, data)=>{
-    if(err){
-      console.error(`Error reading file: ${err.message}`, filePath);
+  // Check if the file exists and is readable
+  fs.access(absolutePath, fs.constants.F_OK | fs.constants.R_OK, (err) => {
+    if (err) {
+      console.error("Error: Column '${columnName}' not found in the CSV.");
       return;
     }
-    console.log(data.trim());
-  })
+
+    // Read the file contents
+    fs.readFile(absolutePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error(`Error reading file: ${err.message}`);
+        return;
+      }
+
+      // Print file contents to the console
+      console.log(data.trim());
+    });
+  });
 }
 
-// TODO: Call printFileContents with the command-line argument
+// Retrieve the file path from command-line arguments
 const filePath = process.argv[2];
 
-if(!filePath){
-  console.log('Please provide a file path');
+// Check if a file path was provided
+if (!filePath) {
+  console.error('Error: Please provide a file path as a command-line argument.');
   process.exit(1);
 }
-printFileContents(filePath);
+
+// Call the readFile function with the provided file path
+readFile(filePath);
