@@ -36,4 +36,4 @@ if (!filePath) {
 
 // Call the readFile function with the provided file path
 readFile(filePath);
-console.log('hi')
+// file chaged
