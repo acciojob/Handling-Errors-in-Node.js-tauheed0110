@@ -36,5 +36,4 @@ if (!filePath) {
 
 // Call the readFile function with the provided file path
 readFile(filePath);
-// file changed
-// once more
+// hello there
