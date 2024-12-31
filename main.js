@@ -27,7 +27,7 @@ function readFile(filePath) {
 
 // Retrieve the file path from command-line arguments
 const filePath = process.argv[2];
-
+console.log('path', filePath);
 // Check if a file path was provided
 if (!filePath) {
   console.error('Error: Please provide a file path as a command-line argument.');
@@ -36,4 +36,3 @@ if (!filePath) {
 
 // Call the readFile function with the provided file path
 readFile(filePath);
-// hello there
